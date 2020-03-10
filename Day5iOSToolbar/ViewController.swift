@@ -60,6 +60,13 @@ class ViewController: UIViewController, UITextFieldDelegate
     
     @objc func doneClick(){
         let dateFormatter1 = DateFormatter()
-        
+        dateFormatter1.dateStyle = .medium
+        dateFormatter1.timeStyle = .none
+        textField_Date.text = dateFormatter1.string(from: datePicker.date)
+        textField_Date.resignFirstResponder()
+    }
+    
+    @objc func cancelClick(){
+        textField_Date.resignFirstResponder()
     }
 }
