@@ -8,13 +8,58 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+class ViewController: UIViewController, UITextFieldDelegate
+{
+  @IBOutlet weak var textField_Date: UITextField!
+  var datePicker : UIDatePicker!
+   
+  override func viewDidLoad()
+  {
+    super.viewDidLoad()
+    //textField_Date.delegate = self
+     
+  }
+   
+  override func didReceiveMemoryWarning()
+  {
+    super.didReceiveMemoryWarning()
+  }
+   
+  func textFieldDidBeginEditing(_ textField: UITextField)
+  {
+    self.pickUpDate(self.textField_Date)
+  }
+   
+  func pickUpDate(_ textField : UITextField)
+  {
+    self.datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 216))
+    self.datePicker.backgroundColor = UIColor.white
+    self.datePicker.datePickerMode = UIDatePicker.Mode.date
+    textField.inputView = self.datePicker
+     
+     
+    //ToolBar
+    let toolBar = UIToolbar()
+    toolBar.barStyle = .default
+    toolBar.isTranslucent = true
+    toolBar.tintColor = .red//UIColor(red: 92/255, green: 216/255, blue 255/255, alpha : 1)
+    toolBar.sizeToFit()
+     
+    //Adding Button ToolBar
+     
+    let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(ViewController.doneClick))
+     
+    let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+     
+    let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(ViewController.cancelClick))
+     
+    toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+    toolBar.isUserInteractionEnabled = true
+    textField.inputAccessoryView = toolBar
+  }
+    
+    @objc func doneClick(){
+        let dateFormatter1 = DateFormatter()
+        
     }
-
-
 }
-
