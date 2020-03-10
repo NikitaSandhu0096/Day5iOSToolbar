@@ -10,8 +10,9 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate
 {
-  @IBOutlet weak var textField_Date: UITextField!
-  var datePicker : UIDatePicker!
+  
+    @IBOutlet weak var textField_Date: UITextField!
+    var datePicker : UIDatePicker!
    
   override func viewDidLoad()
   {
